@@ -1,9 +1,12 @@
 #ifndef INCLUDE_IO_H
 #define INCLUDE_IO_H
 
-#define FB_ADDR (0x00B8000)
+// Frame buffer properties
+#define FB_ADDR        (0x00B8000)
+#define FB_WIDTH_SIZE  (25)
+#define FB_HIEGHT_SIZE (80)
 
-// frame buffer colors
+// Frame buffer colors
 #define FB_BLACK         (0)
 #define FB_BLUE          (1)
 #define FB_GREEN         (2)
@@ -30,7 +33,8 @@
 
 void write_char(unsigned int index, char c, unsigned char fg, unsigned char bg);
 void write(char *buf, unsigned int len);
-void print(char *buf);
 void move_cursor(unsigned short pos);
+void print(char *buf);
+void clear();
 
 #endif // INCLUDE_IO_H

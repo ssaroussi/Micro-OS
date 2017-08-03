@@ -66,3 +66,12 @@ void print(char *buf)
       write_char(curr_fb_index, buf[i], FB_BLACK, FB_WHITE);
     }
 }
+
+void clear()
+{
+  for (unsigned short i = 0; i < FB_HIEGHT_SIZE * FB_WIDTH_SIZE; i++)
+    write_char(i, ' ', FB_BLACK, FB_BLACK);
+
+  curr_fb_index = 0;
+  move_cursor(1);
+}

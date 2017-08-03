@@ -1,9 +1,9 @@
 #include "io.h"
 
 unsigned char *fb = (unsigned char *)+FB_ADDR; // Framebuffer pointer
-unsigned int curr_fb_index = 400; // Starts when bochs's intro ends
+static unsigned int curr_fb_index = 400; // Starts when bochs's intro ends
 
-/** fb_char_write
+/** write_char
  * Writes a char with given args into the framebuffer
  *
  * @param index The index in the fb
@@ -17,10 +17,12 @@ void write_char(unsigned int index, char c, unsigned char fg, unsigned char bg)
   
   fb[index] = c;
   fb[index + 1] = ((fg & 0x0F) << 4) | (bg & 0x0F);
+
+  move_cursor(index / 2);
 }
 
 
-/** fb_move_cursor
+/** move_cursor
  *  Moves the curser to given position
  *
  *  @param pos The new cursor's position
@@ -46,9 +48,9 @@ void move_cursor(unsigned short pos)
  */
 void write(char *buf, unsigned int len)
 {
-  for (unsigned int i = 0; i < len; i++)
+  for (unsigned int i = 0; i < len; i++, curr_fb_index++)
     {
-      write_char(curr_fb_index++, buf[i], FB_WHITE, FB_BLACK);
+      write_char(curr_fb_index, buf[i], FB_BLACK, FB_WHITE);
     }
 }
 
@@ -59,8 +61,8 @@ void write(char *buf, unsigned int len)
  */
 void print(char *buf)
 {
-  for (unsigned int i = 0; buf[i]; i++)
+  for (unsigned int i = 0; buf[i]; i++, curr_fb_index++)
     {
-      write_char(curr_fb_index++, buf[i], FB_WHITE, FB_BLACK);
+      write_char(curr_fb_index, buf[i], FB_BLACK, FB_WHITE);
     }
 }

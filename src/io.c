@@ -1,6 +1,6 @@
 #include "io.h"
 
-unsigned char *fb = (unsigned char *)+FB_ADDR; // Framebuffer pointer
+unsigned char *fb = (unsigned char *)FB_ADDR; // Framebuffer pointer
 static unsigned int curr_fb_index = 400; // Starts when bochs's intro ends
 
 /** write_char
@@ -67,6 +67,9 @@ void print(char *buf)
     }
 }
 
+/** clear
+ *  Clears the screen
+ */
 void clear()
 {
   for (unsigned short i = 0; i < FB_HIEGHT_SIZE * FB_WIDTH_SIZE; i++)

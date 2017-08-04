@@ -2,7 +2,7 @@
 
 int kmain()
 {
-  char buf[] = "Hello There LOL KAL KAL ";
+  char buf[] = "Hello There!";
   clear();
   print(buf);
   return 0;

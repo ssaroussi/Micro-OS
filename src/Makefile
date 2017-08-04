@@ -5,7 +5,7 @@ INCLUDE_DIR = ../include/
 SRC_DIR = src/
 
 CFLAGS = -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector \
-		 -nostartfiles -nodefaultlibs -Wall -Wextra -c \
+		 -nostartfiles -nodefaultlibs -Wall -Wextra -Werror -c \
 		 -I$(INCLUDE_DIR)
 LDFLAGS = -T link.ld -melf_i386
 ASFLAGS = -f elf

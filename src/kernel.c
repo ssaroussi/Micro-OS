@@ -9,7 +9,7 @@ int kmain()
   print(buf);
 
   init_serial(SERIAL_COM1_BASE, 3);
-  serial_log(INFO, buf);
+  serial_log(INFO, "a");
   return 0;
 }
 

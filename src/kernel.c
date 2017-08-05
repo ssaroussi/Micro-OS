@@ -1,5 +1,6 @@
 #include "io.h"
 #include "serial.h"
+#include "logger.h"
 
 int kmain()
 {
@@ -8,9 +9,7 @@ int kmain()
   print(buf);
 
   init_serial(SERIAL_COM1_BASE, 3);
-
-  serial_print(SERIAL_COM1_BASE, buf);
-  
+  serial_log(INFO, buf);
   return 0;
 }
 

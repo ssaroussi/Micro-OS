@@ -4,12 +4,14 @@
 
 int kmain()
 {
-  char buf[] = "Hello There!";
+  char *buf = "Hello There!";
+  
   clear();
-  print(buf);
 
+  print(buf);
   init_serial(SERIAL_COM1_BASE, 3);
-  serial_log(INFO, "a");
+
+  
   return 0;
 }
 

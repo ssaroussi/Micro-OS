@@ -10,7 +10,7 @@ CFLAGS = -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector \
 LDFLAGS = -T link.ld -melf_i386
 ASFLAGS = -f elf
 
-OBJECTS = loader.o kernel.o port.o io.o serial.o logger.o
+OBJECTS = loader.o kernel.o port.o io.o serial.o logger.o gdt.o
 
 all: kernel.elf
 

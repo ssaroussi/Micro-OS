@@ -11,7 +11,7 @@ static unsigned int curr_fb_index = 400; // Starts when bochs's intro ends
  * @param fg The foreground color
  * @param bg The background color
  */
-void write_char(unsigned int index, char c, unsigned char fg, unsigned char bg)
+void write_char(unsigned int index, char c, fb_color_t fg, fb_color_t bg)
 {
   index *= 2;
   
@@ -50,7 +50,7 @@ void write(char *buf, unsigned int len)
 {
   for (unsigned int i = 0; i < len; i++, curr_fb_index++)
     {
-      write_char(curr_fb_index, buf[i], FB_BLACK, FB_WHITE);
+      write_char(curr_fb_index, buf[i], BLACK, WHITE);
     }
 }
 
@@ -63,7 +63,7 @@ void print(char *buf)
 {
   for (unsigned int i = 0; buf[i]; i++, curr_fb_index++)
     {
-      write_char(curr_fb_index, buf[i], FB_BLACK, FB_WHITE);
+      write_char(curr_fb_index, buf[i], BLACK, WHITE);
     }
 }
 
@@ -73,8 +73,9 @@ void print(char *buf)
 void clear()
 {
   for (unsigned short i = 0; i < FB_HIEGHT_SIZE * FB_WIDTH_SIZE; i++)
-    write_char(i, ' ', FB_BLACK, FB_BLACK);
+    write_char(i, ' ', BLACK, BLACK);
 
   curr_fb_index = 0;
   move_cursor(1);
 }
+

@@ -31,14 +31,17 @@ void gdt_set_gate(int index, unsigned long base, unsigned long limit,
   currEntry->access = access; // tnx intel
 }
 
+/** init_gdt
+ *  Sets 3 entries (segs), null (dummy), code and data 
+ */
 void init_gdt()
 {
   pGDT.limit =  (sizeof(gdt_entry_t) * GDT_NUM_ENTRIES) - 1;
   pGDT.base  =  (unsigned int) &GDTEntries;
   
   gdt_set_gate(0, 0, 0, 0, 0); // dummy segment
-  gdt_set_gate(1, 0, CODE_SEG_SIZE, 0x9A, 0xCF);
-  gdt_set_gate(2, 0, DATA_SEG_SIZE, 0x92, 0xCF);
+  gdt_set_gate(1, 0, CODE_SEG_SIZE, 0x9A, 0xCF); // code segment
+  gdt_set_gate(2, 0, DATA_SEG_SIZE, 0x92, 0xCF); // data segment
 
   gdt_flush(); // Oh-My-God, Damn
 }

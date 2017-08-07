@@ -46,7 +46,12 @@ void serial_conf_modem(unsigned short base)
   outb(SERIAL_MODEM_COMMAND_PORT(base), 0x0B);
 }
 
-
+/** init_serial
+ *  Sets default settings with given divisor to given port
+ * 
+ *  @param base The port of the COM
+ *  @param dividor The divisor of the baud rate (blah blah blah)
+ */
 void init_serial(unsigned short base, unsigned short divisor)
 {
   outb(SERIAL_DATA_PORT(base) + 1, 0x00);
@@ -66,14 +71,26 @@ int serial_is_transmit_fifo_empty(unsigned int base)
   return inb(SERIAL_LINE_STATUS(base)) & 20;
 }
 
+/** serial_write_byte
+ *  Writes a byte to given serial port
+ *
+ *  @param base The serial port
+ *  @param byte The byte to write
+ */
 void serial_write_byte(unsigned short base, char byte)
 {
   outb(SERIAL_DATA_PORT(base), byte);
 }
 
+/** serial_write
+ *  Writes a string to given serial port
+ *
+ *  @param base The serial port
+ *  @param buf The string to write
+ *  @param len The length of the string
+ */
 void serial_write(unsigned short base, char *buf, unsigned int len)
 {
-  // TODO: Sleep instead of busy wait
   // while (!serial_is_transmit_fifo_empty(base)); // busy wait :( (for now)
   for (unsigned int i = 0; i < len; i++)
     {
@@ -81,9 +98,14 @@ void serial_write(unsigned short base, char *buf, unsigned int len)
     }
 }
 
+/** serial_write
+ *  Writes a string to given serial port (null terminated)
+ *
+ *  @param base The serial port
+ *  @param buf The string to write
+ */
 void serial_print(unsigned short base, char *buf)
 {
-  // TODO: Sleep instead of busy wait
   // while (serial_is_transmit_fifo_empty(base)); // busy wait :( (for now)  
   for (unsigned int i = 0; buf[i]; i++)
     {

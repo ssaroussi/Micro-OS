@@ -5,6 +5,7 @@
 #define CODE_SEG_SIZE   (0xFFFFFFFF)
 #define DATA_SEG_SIZE   (0xFFFFFFFF)
 
+/* a segment descriptor/gdt entry struct */
 struct gdt_entry
 {
   unsigned short limitLow;
@@ -17,6 +18,7 @@ struct gdt_entry
 
 typedef struct gdt_entry gdt_entry_t;
 
+/* pointer to the gdt */
 struct gdt_ptr
 {
   unsigned short limit;

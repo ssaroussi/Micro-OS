@@ -38,6 +38,13 @@ section .text
 	flush:
 		ret
 
+	extern pIDT
+	global load_idt
+        
+	load_idt:
+		lidt[pIDT]
+		ret
+
 section .bss
 align 4
 	kernel_stack:

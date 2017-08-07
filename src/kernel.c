@@ -2,19 +2,15 @@
 #include "serial.h"
 #include "logger.h"
 #include "gdt.h"
+#include "idt.h"
 
 int kmain()
 {
-  char *buf = "Hello There!\b";
-
-  init_gdt();
-  
   clear();
 
-  for (int i = 0; i < 200; i++)
-    print(buf);
-
-
+  init_gdt();
+  init_idt();
+  
   init_serial(SERIAL_COM1_BASE, 3);
 
   

@@ -1,12 +1,15 @@
 #include "io.h"
 #include "serial.h"
 #include "logger.h"
+#include "gdt.h"
 
 int kmain()
 {
   char *buf = "Hello There!\b";
+
+  init_gdt();
   
-  //  clear();
+  clear();
 
   for (int i = 0; i < 200; i++)
     print(buf);

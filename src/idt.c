@@ -17,7 +17,7 @@ void set_idt_gate(unsigned char index, unsigned long base, unsigned short seg, u
   idt_entry_t *currEntry = idt + index;
 
   currEntry->baseLow  = base & 0xFFFF;
-  currEntry->baseHigh = base >> 16;
+  currEntry->baseHigh = (base >> 16) & 0xFFFF;
   currEntry->seg = seg;
   currEntry->flags = flags;
   

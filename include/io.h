@@ -36,7 +36,6 @@ typedef enum
   } fb_color_t; // Frame Buffer C5Color
 
 void write_char(unsigned int index, char c, fb_color_t fg, fb_color_t bg);
-void write(char *buf, unsigned int len);
 void move_cursor(unsigned short pos);
 void print(char *buf);
 void clear();

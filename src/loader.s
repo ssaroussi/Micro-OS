@@ -6,7 +6,7 @@ CHECKSUM     equ -MAGIC_NUMBER
 KERNEL_STACK_SIZE equ 4096
 
 section .text                  
-	align 4                         
+align 4                         
 	dd MAGIC_NUMBER            
 	dd FLAGS                    
 	dd CHECKSUM            
@@ -26,9 +26,9 @@ section .text
 	global gdt_flush
 
 	gdt_flush:
-		lgdt[pGDT]  ; load the gdt
-		mov ax, 0x10 ; move ax into the data segment in the gdt
-		mov ds, ax   ; clean the registers
+		lgdt[pGDT]   ;; load the gdt
+		mov ax, 0x10 ;; move ax into the data segment in the gdt
+		mov ds, ax   ;; clean the registers
 		mov ss, ax
 		mov ds, ax
 		mov es, ax

@@ -5,12 +5,12 @@ INCLUDE_DIR = ../include/
 SRC_DIR = src/
 
 CFLAGS = -m32 -nostdlib -nostdinc -fno-builtin -fno-stack-protector \
-		 -nostartfiles -nodefaultlibs -Wall -Wextra -Werror -c \
+		 -nostartfiles -nodefaultlibs -Wall -Wextra -c \
 		 -I$(INCLUDE_DIR)
 LDFLAGS = -T link.ld -melf_i386
 ASFLAGS = -f elf
 
-OBJECTS = loader.o kernel.o port.o util.o io.o serial.o logger.o gdt.o idt.o
+OBJECTS = loader.o kernel.o port.o util.o io.o serial.o logger.o gdt.o idt.o interrupts.o isr.o
 
 all: kernel.elf
 

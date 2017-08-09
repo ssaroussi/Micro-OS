@@ -1,5 +1,5 @@
 /** memset
- *  Writes given val togiven addr space (val to (val + size))
+ *  Writes given value to given addr space (src to (src + size))
  *  
  *  @param src The base, start of the write
  *  @param val The value to write
@@ -8,5 +8,6 @@
 void *memset(void *src, unsigned short val, unsigned int size)
 {
   for (char *tmp = (char *) src; size; size--, tmp++) *tmp = val;
+  
   return src;
 }

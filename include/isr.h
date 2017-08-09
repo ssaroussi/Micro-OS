@@ -1,14 +1,7 @@
 #ifndef INCLUDE_ISR_H
 #define INCLUDE_ISR_H
 
-struct regs
-{
-  unsigned int gs, fs, es, ds;
-  unsigned int edi, esi, ebp, esp, ebx, edx, ecx, eax;
-  unsigned int interrupt_num, err_code;
-  unsigned int eip, cs, eflags, useresp, ss;
-};
-typedef struct regs regs_t;
+#include "interrupts.h"
 
 /* At interrupts.s */
 extern void isr0();
@@ -45,6 +38,6 @@ extern void isr30();
 extern void isr31();
 
 void init_isr();
-void interrupt_handler();
+void isr_handler();
 
 #endif /* INCLUDE_ISR_H */

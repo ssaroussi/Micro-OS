@@ -24,7 +24,7 @@ void rem_irq_handler(unsigned char index)
 }
 
 /** remap_irq
- *  Remap the pic irq's indexing so that the 
+ *  Remap the pic irq's indexing so that the
  *  irq routines and the isrs will not clash
  */
 void remap_irq()
@@ -43,7 +43,7 @@ void remap_irq()
 
   outb(PIC_MASTER_MASK_PORT, 0x00);
   outb(PIC_SLAVE_MASK_PORT,  0x00);
-  
+
 }
 
 /** init_irq
@@ -79,5 +79,5 @@ void irq_handler(regs_t *regs)
     outb(PIC_SLAVE_CONTROL_PORT, PIC_EOI_COMMAND);
 
   outb(PIC_MASTER_CONTROL_PORT, PIC_EOI_COMMAND);
-  
+
 }

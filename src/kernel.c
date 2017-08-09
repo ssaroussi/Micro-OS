@@ -6,6 +6,7 @@
 #include "isr.h"
 #include "irq.h"
 #include "pit.h"
+#include "interrupts.h"
 
 int kmain()
 {
@@ -15,9 +16,7 @@ int kmain()
   init_idt();
   init_isr();
   init_irq();
-
-  asm("sti");
-  
+  enable_interrupts();
   init_pit();
 
   init_serial(SERIAL_COM1_BASE, 3);

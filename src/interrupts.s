@@ -76,6 +76,7 @@ isr_common:
 	call eax
 
 	pop eax
+
 	pop gs
 	pop fs
 	pop es
@@ -142,3 +143,7 @@ irq_common:
 
 	add esp, 8 ; clean the error code and irs number
 	iret
+
+[GLOBAL enable_interrupts]
+enable_interrupts:
+	sti

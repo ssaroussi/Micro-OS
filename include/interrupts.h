@@ -14,5 +14,6 @@ struct regs
 };
 typedef struct regs regs_t;
 
+void enable_interrupts(); // At interrupts.s
 
 #endif /* INCLUDE_INTERRUPTS_H */

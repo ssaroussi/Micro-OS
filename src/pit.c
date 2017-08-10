@@ -11,8 +11,8 @@ void pit_handler(regs_t *regs)
 {
   pit_ticks++;
 
-  if (!(pit_ticks % 18))
-    putc(((pit_ticks) / 18) + '0'); // just prints the readable ascii crap, lol
+  //  if (!(pit_ticks % 18))
+    //    putc(((pit_ticks) / 18) + '0'); // just prints the readable ascii crap, lol
 }
 
 /** pit_phase

@@ -31,12 +31,6 @@ void putc(char c)
 {
   if (!c) return;
 
-  if (c == '\b')
-    {
-      curr_fb_x += 4;
-      return;
-    }
-
   #define NEW_LINE (c == '\n' || c == '\r')
   
   if (NEW_LINE || curr_fb_x >= (FB_HIEGHT_SIZE - 1))

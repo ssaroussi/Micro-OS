@@ -1,27 +1,30 @@
-global loader
+[GLOBAL loader]
 
 MAGIC_NUMBER equ 0x1BADB002
-FLAGS        equ 0x0            
-CHECKSUM     equ -MAGIC_NUMBER
+FLAGS        equ 0x00000001
+
+CHECKSUM     equ -(MAGIC_NUMBER + FLAGS)
+
 KERNEL_STACK_SIZE equ 4096
 
-section .text                  
-align 4                         
-	dd MAGIC_NUMBER            
-	dd FLAGS                    
-	dd CHECKSUM            
+section .text
+align 4
+	dd MAGIC_NUMBER
+	dd FLAGS
+	dd CHECKSUM
 
 
 	loader:
 		mov esp, kernel_stack + KERNEL_STACK_SIZE
 
-		extern kmain
+		[EXTERN kmain]
+		push ebx									;; Grub's struct
 		call kmain
 
 	.loop:
 		jmp .loop
 
-	
+
 	extern pGDT
 	global gdt_flush
 
@@ -40,7 +43,7 @@ align 4
 
 	extern pIDT
 	global load_idt
-        
+
 	load_idt:
 		lidt[pIDT]
 		ret
@@ -48,5 +51,4 @@ align 4
 section .bss
 align 4
 	kernel_stack:
-		resb KERNEL_STACK_SIZE      
-
+		resb KERNEL_STACK_SIZE

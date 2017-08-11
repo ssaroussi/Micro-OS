@@ -8,21 +8,22 @@
 #include "pit.h"
 #include "keyboard.h"
 #include "interrupts.h"
+#include "multiboot.h"
 
-int kmain()
+int kmain(unsigned int ebx)
 {
   clear();
-
   init_gdt();
   init_idt();
   init_isr();
   init_irq();
-  
+
   enable_interrupts();
+  
   init_pit();
   init_keyboard();
 
-  
+
 
   init_serial(SERIAL_COM1_BASE, 3);
 

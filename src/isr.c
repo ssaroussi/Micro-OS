@@ -1,6 +1,4 @@
 #include "isr.h"
-#include "idt.h"
-#include "io.h"
 
 /** init_isr
  *  Initialize the exception interrupts
@@ -26,8 +24,12 @@ void isr_handler(regs_t *regs)
 {
   if (regs->interrupt_num < ISR_NUM)
     {
-      putc(regs->interrupt_num + '0');
+      char int_num[3] = { 0 };
+      itoa(regs->interrupt_num, int_num, 10);
+      print(int_num);
+      
+      while(1);
     }
 
-  while(1);
+ 
 }

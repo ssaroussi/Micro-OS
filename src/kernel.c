@@ -9,21 +9,24 @@
 #include "keyboard.h"
 #include "interrupts.h"
 #include "multiboot.h"
+#include "util.h"
 
-int kmain(unsigned int ebx)
+
+int kmain(multiboot_info_t *mbinfo)
 {
+
   clear();
+
   init_gdt();
   init_idt();
+
   init_isr();
   init_irq();
 
   enable_interrupts();
-  
+
   init_pit();
   init_keyboard();
-
-
 
   init_serial(SERIAL_COM1_BASE, 3);
 

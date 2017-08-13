@@ -2,6 +2,9 @@
 #define INCLUDE_ISR_H
 
 #include "interrupts.h"
+#include "idt.h"
+#include "io.h"
+#include "util.h"
 
 /* At interrupts.s */
 extern void isr0();

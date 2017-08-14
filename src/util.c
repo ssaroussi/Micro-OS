@@ -1,23 +1,25 @@
+#include "util.h"
+
 /** memset
  *  Writes given value to given addr space (src to (src + size))
- *  
+ *
  *  @param src The base, start of the write
  *  @param val The value to write
  *  @param size The size of the chunk to write to
  */
-void *memset(void *src, unsigned short val, unsigned int size)
+void *memset(void *src, uint16_t val, uint32_t size)
 {
   for (char *tmp = (char *) src; size; size--, tmp++) *tmp = val;
-  
+
   return src;
 }
 
 /* Credit to osdev */
-char * itoa( int value, char * str, int base )
+char * itoa( int32_t value, int8_t * str, int32_t base )
 {
-  char * rc;
-  char * ptr;
-  char * low;
+  int8_t * rc;
+  int8_t * ptr;
+  int8_t * low;
   // Check for supported base.
   if ( base < 2 || base > 36 )
     {
@@ -44,7 +46,7 @@ char * itoa( int value, char * str, int base )
   // Invert the numbers.
   while ( low < ptr )
     {
-      char tmp = *low;
+      int8_t tmp = *low;
       *low++ = *ptr;
       *ptr-- = tmp;
     }

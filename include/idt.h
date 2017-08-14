@@ -3,27 +3,29 @@
 
 #define IDT_SIZE (0x100)
 
+#include "common.h"
+
 struct idt_entry
 {
-  unsigned short baseLow;
-  unsigned short seg;
-  unsigned char  thisIs0;
-  unsigned char  flags;
-  unsigned short baseHigh;
+  uint16_t baseLow;
+  uint16_t seg;
+  uint8_t  thisIs0;
+  uint8_t  flags;
+  uint16_t baseHigh;
 } __attribute__((packed));
 
 typedef struct idt_entry idt_entry_t;
 
 struct idt_ptr
 {
-  unsigned short limit;
-  unsigned int  base;
+  uint16_t limit;
+  uint32_t  base;
 } __attribute__((packed));
 
 typedef struct idt_ptr idt_ptr_t;
 
 
-void set_idt_gate(unsigned char index, unsigned long base, unsigned short seg, unsigned char flags);
+void set_idt_gate(uint8_t index, uint32_t base, uint16_t seg, uint8_t flags);
 void init_idt();
 extern void load_idt();
 

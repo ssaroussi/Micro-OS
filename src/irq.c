@@ -8,7 +8,7 @@ void *irq_routines[IRQ_NUM] = { 0 };
  *  @param index IRQ routine number
  *  @param handler A pointer to the irq handler
  */
-void set_irq_handler(unsigned char index, void (*handler)(regs_t *regs))
+void set_irq_handler(uint8_t index, void (*handler)(regs_t *regs))
 {
   irq_routines[index] = handler;
 }
@@ -18,7 +18,7 @@ void set_irq_handler(unsigned char index, void (*handler)(regs_t *regs))
  *
  *  @param index The IRQ routine number
  */
-void rem_irq_handler(unsigned char index)
+void rem_irq_handler(uint8_t index)
 {
   irq_routines[index] = (void *) 0;
 }
@@ -60,8 +60,8 @@ void init_irq()
     &irq12, &irq13, &irq14, &irq15
   };
 
-  for (unsigned char i = 0; i < IRQ_NUM; i++)
-    set_idt_gate(i + IRQ_OFFSET, (unsigned)irqs[i], 0x08, 0x8E);
+  for (uint8_t i = 0; i < IRQ_NUM; i++)
+    set_idt_gate(i + IRQ_OFFSET, (uint32_t)irqs[i], 0x08, 0x8E);
 }
 
 /** irq_handler

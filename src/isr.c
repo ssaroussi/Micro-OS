@@ -13,8 +13,8 @@ void init_isr()
     &isr29, &isr30, &isr31
   };
 
-  for (int i = 0; i < ISR_NUM; i++)
-    set_idt_gate(i, (unsigned)isrs[i], 0x08, 0x8E);
+  for (int32_t i = 0; i < ISR_NUM; i++)
+    set_idt_gate(i, (uint32_t)isrs[i], 0x08, 0x8E);
 }
 
 /** interrupt_handler
@@ -24,12 +24,12 @@ void isr_handler(regs_t *regs)
 {
   if (regs->interrupt_num < ISR_NUM)
     {
-      char int_num[3] = { 0 };
+      int8_t int_num[3] = { 0 };
       itoa(regs->interrupt_num, int_num, 10);
       print(int_num);
-      
+
       while(1);
     }
 
- 
+
 }

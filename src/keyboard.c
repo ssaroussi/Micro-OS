@@ -1,6 +1,6 @@
 #include "keyboard.h"
 
-unsigned char kb_us[CHARS_NUM] = {
+uint8_t kb_us[CHARS_NUM] = {
   0, 27, '1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
   '-', '=', '\b', '\t',
   'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\n',
@@ -14,7 +14,7 @@ unsigned char kb_us[CHARS_NUM] = {
 
 void keyboard_handler(regs_t *regs)
 {
-  unsigned char key_code = inb(0x60);
+  uint8_t key_code = inb(0x60);
 
   if (key_code & 0x80) // Key released
     {
@@ -25,9 +25,9 @@ void keyboard_handler(regs_t *regs)
       if (key_code)
 	putc(kb_us[key_code]);
     }
-  
+
 }
-  
+
 void init_keyboard()
 {
   set_irq_handler(1, keyboard_handler);

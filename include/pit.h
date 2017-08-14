@@ -8,12 +8,13 @@
 
 #define PIT_DEFAULT_SPEED (1193180)
 
+#include "common.h"
 #include "interrupts.h"
 #include "irq.h"
 #include "io.h"
 
 void pit_handler(regs_t *regs);
-void pit_phase(unsigned int speed);
+void pit_phase(uint32_t speed);
 void init_pit();
 
 #endif /* __INCLUDE_PIT_H */

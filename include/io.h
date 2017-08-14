@@ -12,6 +12,7 @@
 #define FB_HIGH_BYTE_COMMAND (14)
 #define FB_LOW_BYTE_COMMAND  (15)
 
+#include "common.h"
 #include "port.h"
 
 // Frame buffer colors
@@ -35,10 +36,10 @@ typedef enum
     WHITE
   } fb_color_t; // Frame Buffer C5Color
 
-void write_char(unsigned int index, char c, fb_color_t fg, fb_color_t bg);
-void putc(char c);
-void move_cursor(unsigned short pos);
-void print(char *buf);
+void write_char(uint32_t index, int8_t c, fb_color_t fg, fb_color_t bg);
+void putc(int8_t c);
+void move_cursor(uint16_t pos);
+void print(int8_t *buf);
 void clear();
 
 #endif // INCLUDE_IO_H

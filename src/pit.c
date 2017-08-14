@@ -1,6 +1,6 @@
 #include "pit.h"
 
-static unsigned long pit_ticks = 0;
+static uint32_t pit_ticks = 0;
 
 /** pit_handler
  *  The handler of the pit (there's no much to tell)
@@ -20,9 +20,9 @@ void pit_handler(regs_t *regs)
  *
  *  @param speed The wanted speed
  */
-void pit_phase(unsigned int speed)
+void pit_phase(uint32_t speed)
 {
-  unsigned int divisor = PIT_DEFAULT_SPEED / speed;   /* Calculate our divisor */
+  uint32_t divisor = PIT_DEFAULT_SPEED / speed;   /* Calculate our divisor */
 
   outb(PIT_COMMAND_PORT, 0x36);             /* Set our command byte 0x36 */
   outb(PIT_CHNL_0_PORT, divisor & 0xFF);   /* Set low byte of divisor */

@@ -12,11 +12,11 @@
 #include "util.h"
 #include "mm.h"
 
-extern unsigned int kernel_end;
-extern unsigned int kernel_base;
-extern unsigned int kernel_size;
+extern uint32_t kernel_end;
+extern uint32_t kernel_base;
+extern uint32_t kernel_size;
 
-int kmain(multiboot_info_t *mbinfo)
+int32_t kmain(multiboot_info_t *mbinfo)
 {
 
   clear();
@@ -34,6 +34,6 @@ int kmain(multiboot_info_t *mbinfo)
 
   init_serial(SERIAL_COM1_BASE, 3);
   init_mm(mbinfo, &kernel_base, &kernel_end, &kernel_size);
-  
+
   return 0;
 }

@@ -1,6 +1,7 @@
 #ifndef INCLUDE_ISR_H
 #define INCLUDE_ISR_H
 
+#include "common.h"
 #include "interrupts.h"
 #include "idt.h"
 #include "io.h"

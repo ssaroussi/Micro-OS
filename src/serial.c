@@ -7,10 +7,10 @@
  *  @param base The port of the com
  *  @param divisor The divisor of the total speed (finall speed: 115200 / divisor)
  */
-void serial_conf_baud_rate(unsigned short base, unsigned short divisor)
+void serial_conf_baud_rate(uint16_t base, uint16_t divisor)
 {
   outb(SERIAL_LINE_COMMAND_PORT(base), SERIAL_LINE_ENABLE_DLAB); // Enable DLAB
-  
+
   // Send the divisor (high - > low)
   outb(SERIAL_DATA_PORT(base), (divisor >> 8) & 0x00FF);
   outb(SERIAL_DATA_PORT(base) + 1, divisor & 0x00FF);
@@ -18,41 +18,41 @@ void serial_conf_baud_rate(unsigned short base, unsigned short divisor)
 
 /** serial_conf_line
  *  Confs the line of the given port base
- * 
+ *
  *  @param base The serial port to configure
  */
-void serial_conf_line(unsigned short base)
+void serial_conf_line(uint16_t base)
 {
   outb(SERIAL_LINE_COMMAND_PORT(base), 0x03);
 }
 
 /** serial_conf_buff
  *  Confs the buffer of the given port base
- * 
+ *
  *  @param base The serial port to configure
  */
-void serial_conf_buff(unsigned short base)
+void serial_conf_buff(uint16_t base)
 {
   outb(SERIAL_FIFO_COMMAND_PORT(base), 0xC7);
 }
 
 /** serial_conf_modem
  *  Confs the modem of the given port base
- * 
+ *
  *  @param base The serial port to configure
  */
-void serial_conf_modem(unsigned short base)
+void serial_conf_modem(uint16_t base)
 {
   outb(SERIAL_MODEM_COMMAND_PORT(base), 0x0B);
 }
 
 /** init_serial
  *  Sets default settings with given divisor to given port
- * 
+ *
  *  @param base The port of the COM
  *  @param dividor The divisor of the baud rate (blah blah blah)
  */
-void init_serial(unsigned short base, unsigned short divisor)
+void init_serial(uint16_t base, uint16_t divisor)
 {
   outb(SERIAL_DATA_PORT(base) + 1, 0x00);
   serial_conf_baud_rate(base, divisor);
@@ -66,7 +66,7 @@ void init_serial(unsigned short base, unsigned short divisor)
  *
  *  @param base The serial port to test
  */
-int serial_is_transmit_fifo_empty(unsigned int base)
+int serial_is_transmit_fifo_empty(uint32_t base)
 {
   return inb(SERIAL_LINE_STATUS(base)) & 20;
 }
@@ -77,7 +77,7 @@ int serial_is_transmit_fifo_empty(unsigned int base)
  *  @param base The serial port
  *  @param byte The byte to write
  */
-void serial_write_byte(unsigned short base, char byte)
+void serial_write_byte(uint16_t base, int8_t byte)
 {
   outb(SERIAL_DATA_PORT(base), byte);
 }
@@ -89,10 +89,10 @@ void serial_write_byte(unsigned short base, char byte)
  *  @param buf The string to write
  *  @param len The length of the string
  */
-void serial_write(unsigned short base, char *buf, unsigned int len)
+void serial_write(uint16_t base, int8_t *buf, uint32_t len)
 {
   // while (!serial_is_transmit_fifo_empty(base)); // busy wait :( (for now)
-  for (unsigned int i = 0; i < len; i++)
+  for (uint32_t i = 0; i < len; i++)
     {
       serial_write_byte(base, buf[i]);
     }
@@ -104,10 +104,10 @@ void serial_write(unsigned short base, char *buf, unsigned int len)
  *  @param base The serial port
  *  @param buf The string to write
  */
-void serial_print(unsigned short base, char *buf)
+void serial_print(uint16_t base, int8_t *buf)
 {
-  // while (serial_is_transmit_fifo_empty(base)); // busy wait :( (for now)  
-  for (unsigned int i = 0; buf[i]; i++)
+  // while (serial_is_transmit_fifo_empty(base)); // busy wait :( (for now)
+  for (uint32_t i = 0; buf[i]; i++)
     {
       serial_write_byte(base, buf[i]);
     }

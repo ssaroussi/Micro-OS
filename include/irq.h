@@ -13,6 +13,8 @@
 
 #define PIC_EOI_COMMAND         (0x20)
 
+#include "common.h"
+
 extern void irq0();
 extern void irq1();
 extern void irq2();
@@ -33,8 +35,8 @@ extern void irq15();
 void irq_handler(regs_t *regs);
 void init_irq();
 void remap_irq();
-void rem_irq_handler(unsigned char index);
-void set_irq_handler(unsigned char index, void (*handler)(regs_t *regs));
+void rem_irq_handler(uint8_t index);
+void set_irq_handler(uint8_t index, void (*handler)(regs_t *regs));
 
 
 #endif /* INCLUDE_IRQ_H */

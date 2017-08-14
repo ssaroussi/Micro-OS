@@ -19,15 +19,17 @@
  */
 #define SERIAL_LINE_ENABLE_DLAB (0x80)
 
-void serial_conf_baud_rate(unsigned short base, unsigned short divisor);
-void serial_conf_line(unsigned short base);
-void serial_conf_buff(unsigned short base);
-void serial_conf_modem(unsigned short base);
-void serial_write_byte(unsigned short base, char byte);
-void serial_write(unsigned short base, char *buf, unsigned int len);
-void serial_print(unsigned short base, char *buf);
-void init_serial(unsigned short base, unsigned short divisor);
+#include "common.h"
 
-int serial_is_transmit_fifo_empty(unsigned int base);
+void serial_conf_baud_rate(uint16_t base, uint16_t divisor);
+void serial_conf_line(uint16_t base);
+void serial_conf_buff(uint16_t base);
+void serial_conf_modem(uint16_t base);
+void serial_write_byte(uint16_t base, int8_t byte);
+void serial_write(uint16_t base, int8_t *buf, uint32_t len);
+void serial_print(uint16_t base, int8_t *buf);
+void init_serial(uint16_t base, uint16_t divisor);
+
+int serial_is_transmit_fifo_empty(uint32_t base);
 
 #endif // INCLUDE_SERIAL_H

@@ -4,6 +4,7 @@
 #define CHARS_NUM          (0x80)
 #define KEYBOARD_DATA_PORT (0x60)
 
+#include "common.h"
 #include "port.h"
 #include "irq.h"
 #include "io.h"

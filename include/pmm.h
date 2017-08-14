@@ -5,6 +5,7 @@
 #define PMM_BLOCKS_PER_BYTE (8)             // One for each bit
 #define PMM_BLOCK_ALIGN     PMM_BLOCK_SIZE
 
+#include "common.h"
 #include "util.h"
 
 #define AVBL_MM_REGION  (0)
@@ -15,22 +16,22 @@
 
 typedef struct memory_region
 {
-  unsigned int startLo;
-  unsigned int startHi;
-  unsigned int sizeLo;
-  unsigned int sizeHi;
-  unsigned int type;
-  unsigned int acpi_3;
-  
+  uint32_t startLo;
+  uint32_t startHi;
+  size_t sizeLo;
+  size_t sizeHi;
+  uint32_t type;
+  uint32_t acpi_3;
+
 } memory_region_t;
 
-void init_pmm(unsigned int memSize, void *bitmap);
-void set_pmm_region(void *base, unsigned int size);
-void unset_pmm_region(void *base, unsigned int size);
+void init_pmm(size_t memSize, void *bitmap);
+void set_pmm_region(void *base, size_t size);
+void unset_pmm_region(void *base, size_t size);
 
-void mmap_set(unsigned int index);
-void mmap_unset(unsigned int index);
-char mmap_test(unsigned int index);
+void mmap_set(uint32_t index);
+void mmap_unset(uint32_t index);
+char mmap_test(uint32_t index);
 
 int  mmap_first_free();
 

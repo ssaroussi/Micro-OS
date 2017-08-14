@@ -6,13 +6,13 @@ idt_ptr_t pIDT;
 
 /** idt_set_gate
  *  Initialize a idt entry by given index and params
- *  
+ *
  *  @param index The index of the enrty (in idt)
  *  @param base  The base addr of the entry
  *  @param limit The limit of the entry (highest addr)
  *  @param access and gran The flags of the entry
  */
-void set_idt_gate(unsigned char index, unsigned long base, unsigned short seg, unsigned char flags)
+void set_idt_gate(uint8_t index, uint32_t base, uint16_t seg, uint8_t flags)
 {
   idt_entry_t *currEntry = idt + index;
 
@@ -20,16 +20,16 @@ void set_idt_gate(unsigned char index, unsigned long base, unsigned short seg, u
   currEntry->baseHigh = (base >> 16) & 0xFFFF;
   currEntry->seg = seg;
   currEntry->flags = flags;
-  
+
 }
 
 /** init_idt
- *  Sets idt 
+ *  Sets idt
  */
 void init_idt()
 {
   pIDT.limit = (sizeof(idt_entry_t) * IDT_SIZE) - 1;
-  pIDT.base  = (unsigned int) &idt;
+  pIDT.base  = (uint32_t) &idt;
 
   (void) memset(&idt, 0, sizeof(idt_entry_t) * IDT_SIZE); // wipe the idt entries
 

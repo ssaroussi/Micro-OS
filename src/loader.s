@@ -18,7 +18,8 @@ align 4
 		mov esp, kernel_stack + KERNEL_STACK_SIZE
 
 		[EXTERN kmain]
-		push ebx									;; Grub's struct
+		push edx
+		push ebx
 		call kmain
 
 	.loop:

@@ -10,7 +10,11 @@
 #include "interrupts.h"
 #include "multiboot.h"
 #include "util.h"
+#include "mm.h"
 
+extern unsigned int kernel_end;
+extern unsigned int kernel_base;
+extern unsigned int kernel_size;
 
 int kmain(multiboot_info_t *mbinfo)
 {
@@ -29,7 +33,7 @@ int kmain(multiboot_info_t *mbinfo)
   init_keyboard();
 
   init_serial(SERIAL_COM1_BASE, 3);
-
-
+  init_mm(mbinfo, &kernel_base, &kernel_end, &kernel_size);
+  
   return 0;
 }

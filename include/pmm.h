@@ -7,6 +7,23 @@
 
 #include "util.h"
 
+#define AVBL_MM_REGION  (0)
+#define RVRSD_MM_REGION (1)
+#define ACPI_REC_REGION (2)
+#define ACPI_NVS_REGION (3)
+#define BAD_MM_REGION   (4)
+
+typedef struct memory_region
+{
+  unsigned int startLo;
+  unsigned int startHi;
+  unsigned int sizeLo;
+  unsigned int sizeHi;
+  unsigned int type;
+  unsigned int acpi_3;
+  
+} memory_region_t;
+
 void init_pmm(unsigned int memSize, void *bitmap);
 void set_pmm_region(void *base, unsigned int size);
 void unset_pmm_region(void *base, unsigned int size);

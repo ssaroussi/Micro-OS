@@ -15,6 +15,9 @@
     along with this program; if not, write to the Free Software
     Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA. */
 
+#ifndef INCLUDE_MULTIBOOT_H
+#define INCLUDE_MULTIBOOT_H
+
  /* Macros. */
 
  /* The magic number for the Multiboot header. */
@@ -116,4 +119,5 @@
    unsigned long type;
  } memory_map_t;
 
- #endif /* ! ASM */
+#endif /* ! ASM */
+#endif /* INCLUDE_MULTIBOOT_H */

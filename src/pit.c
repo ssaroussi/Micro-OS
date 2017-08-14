@@ -36,4 +36,5 @@ void init_pit()
 {
   pit_phase(100);
   set_irq_handler(0, pit_handler);
+  global_log(INFO, "Initialized The Programmable Interrupt Controller");
 }

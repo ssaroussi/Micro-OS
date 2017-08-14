@@ -20,6 +20,7 @@ int32_t kmain(multiboot_info_t *mbinfo)
 {
 
   clear();
+  init_serial(SERIAL_COM1_BASE, 3);
 
   init_gdt();
   init_idt();
@@ -32,7 +33,6 @@ int32_t kmain(multiboot_info_t *mbinfo)
   init_pit();
   init_keyboard();
 
-  init_serial(SERIAL_COM1_BASE, 3);
   init_mm(mbinfo, &kernel_base, &kernel_end, &kernel_size);
 
   return 0;

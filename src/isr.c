@@ -15,6 +15,8 @@ void init_isr()
 
   for (int32_t i = 0; i < ISR_NUM; i++)
     set_idt_gate(i, (uint32_t)isrs[i], 0x08, 0x8E);
+
+  global_log(INFO, "Initialized Exception Interrupts");
 }
 
 /** interrupt_handler

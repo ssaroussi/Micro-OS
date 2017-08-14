@@ -31,4 +31,5 @@ void keyboard_handler(regs_t *regs)
 void init_keyboard()
 {
   set_irq_handler(1, keyboard_handler);
+  global_log(INFO, "Loaded A Basic Keyboard Driver");
 }

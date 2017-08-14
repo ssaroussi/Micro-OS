@@ -33,6 +33,8 @@ void init_idt()
 
   (void) memset(&idt, 0, sizeof(idt_entry_t) * IDT_SIZE); // wipe the idt entries
 
+  global_log(INFO, "Initialized The Interrupt Descriptor Table");
   load_idt();
+  global_log(INFO, "Loaded The Interrupt Descriptor Table");
 
 }

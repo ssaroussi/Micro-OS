@@ -62,6 +62,8 @@ void init_irq()
 
   for (uint8_t i = 0; i < IRQ_NUM; i++)
     set_idt_gate(i + IRQ_OFFSET, (uint32_t)irqs[i], 0x08, 0x8E);
+
+  global_log(INFO, "Initialized The Interrupt Request Routines");
 }
 
 /** irq_handler

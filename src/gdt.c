@@ -43,5 +43,8 @@ void init_gdt()
   gdt_set_gate(1, 0, CODE_SEG_SIZE, 0x9A, 0xCF); // code segment
   gdt_set_gate(2, 0, DATA_SEG_SIZE, 0x92, 0xCF); // data segment
 
-  gdt_flush(); // Oh-My-God, Damn
+  global_log(INFO, "Initialized The Global Descriptor Table");
+  gdt_flush();
+  global_log(INFO, "Loaded The Global Descriptor Table");
+  
 }
